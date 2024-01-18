@@ -1,0 +1,11 @@
+{
+  "name": "ws-net-quasar",
+  "workspaces": [
+    "sdks/**/*",
+    "app",
+    "api"
+  ],
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.8.0"
+  }
+}

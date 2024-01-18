@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.128-alpha">
+  <PropertyGroup>
+    <BuildCommand>npm run build -w=ws-net-quasar-sdk-fetch</BuildCommand>
+    <StartupCommand>npm run dev -w=ws-net-quasar-sdk-fetch</StartupCommand>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <Target Name="OpenAPI" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
+	<Exec Command="dotnet swagger tofile --output ../sdks/fetch/openapi.json $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)" />
+	<Exec Command="openapi-generator-cli generate -i ../sdks/fetch/openapi.json -g typescript-fetch -o ../sdks/fetch --skip-validate-spec --additional-properties=npmName=ws-net-quasar-sdk-fetch,npmVersion=$(Version),supportsES6=true" WorkingDirectory="$(ProjectDir)" />
+	<Exec Command="npm run prepare -w=ws-net-quasar-sdk-fetch" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+</Project>
